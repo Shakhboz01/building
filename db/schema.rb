@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_02_161510) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_02_162539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "apartment_numbers", force: :cascade do |t|
+    t.bigint "block_id", null: false
+    t.integer "number"
+    t.integer "number_of_rooms"
+    t.integer "square"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_apartment_numbers_on_block_id"
+  end
+
+  create_table "apartments", force: :cascade do |t|
+    t.bigint "floor_id", null: false
+    t.bigint "block_id", null: false
+    t.string "comment"
+    t.bigint "apartment_number_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_number_id"], name: "index_apartments_on_apartment_number_id"
+    t.index ["block_id"], name: "index_apartments_on_block_id"
+    t.index ["floor_id"], name: "index_apartments_on_floor_id"
+  end
 
   create_table "blocks", force: :cascade do |t|
     t.string "name"
@@ -26,6 +48,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_161510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_floors_on_block_id"
+  end
+
+  create_table "room_squares", force: :cascade do |t|
+    t.string "name"
+    t.decimal "square", precision: 6, scale: 1
+    t.bigint "apartment_number_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_number_id"], name: "index_room_squares_on_apartment_number_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,5 +73,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_161510) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "apartment_numbers", "blocks"
+  add_foreign_key "apartments", "apartment_numbers"
+  add_foreign_key "apartments", "blocks"
+  add_foreign_key "apartments", "floors"
   add_foreign_key "floors", "blocks"
+  add_foreign_key "room_squares", "apartment_numbers"
 end

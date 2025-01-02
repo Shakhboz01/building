@@ -1,0 +1,12 @@
+<% content_for :title, "Editing room square" %>
+
+<h1>Editing room square</h1>
+
+<%= render "form", room_square: @room_square %>
+
+<br>
+
+<div>
+  <%= link_to "Show this room square", @room_square %> |
+  <%= link_to "Back to room squares", room_squares_path %>
+</div>
