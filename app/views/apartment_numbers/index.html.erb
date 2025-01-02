@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Apartment numbers" %>
+
+<h1>Apartment numbers</h1>
+
+<div id="apartment_numbers">
+  <% @apartment_numbers.each do |apartment_number| %>
+    <%= render apartment_number %>
+    <p>
+      <%= link_to "Show this apartment number", apartment_number %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New apartment number", new_apartment_number_path %>
