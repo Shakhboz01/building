@@ -10,3 +10,59 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+.building {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 10px auto;
+    gap: 10px;
+  }
+
+  .floor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .floor-label {
+    width: 100px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  .apartments {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 5px;
+    flex: 1;
+  }
+
+  .apartment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    text-align: center;
+    height: 50px;
+    font-size: 12px;
+  }
+
+  .apartment.reserved {
+    background-color: #f44;
+    color: #fff;
+  }
+
+  .apartment.available {
+    background-color: #4caf50;
+    color: #fff;
+  }
+
+  .apartment .comment {
+    font-size: 10px;
+    color: #ff0;
+    margin-top: 5px;
+  }

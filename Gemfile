@@ -67,3 +67,4 @@ gem "devise", "~> 4.9"
 gem 'sassc-rails'
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'simple_form'
