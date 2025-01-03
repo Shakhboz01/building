@@ -1,16 +1,18 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Blocks" %>
-
-<h1>Blocks</h1>
-
-<div id="blocks">
+<div class="card-group">
   <% @blocks.each do |block| %>
-    <%= render block %>
-    <p>
-      <%= link_to "Show this block", block %>
-    </p>
+    <div class="card shadow m-2" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= block.name %></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Количество комнат <%= block.number_of_rooms %></li>
+        <li class="list-group-item">Этажность <%= block.floors.count %></li>
+        <li class="list-group-item">Количество квартир на каждом этаже: <%= block.apartment_numbers.count %></li>
+        <li class="list-group-item">Общая плошадь: <%= block.total_square %> кв.</li>
+      </ul>
+      <div class="card-body">
+        <%= link_to 'Посмотреть', block_path(block), class: 'card-link' %>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New block", new_block_path %>
