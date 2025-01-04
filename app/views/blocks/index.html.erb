@@ -1,18 +1,17 @@
 <div class="card-group">
   <% @blocks.each do |block| %>
     <div class="card shadow m-2" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title"><%= block.name %></h5>
-      </div>
+      <%= link_to block_path(block) do %>
+        <div class="card-body bg-warning">
+          <h5 class="card-title"><%= block.name %></h5>
+        </div>
+      <% end %>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Количество комнат <%= block.number_of_rooms %></li>
-        <li class="list-group-item">Этажность <%= block.floors.count %></li>
-        <li class="list-group-item">Количество квартир на каждом этаже: <%= block.apartment_numbers.count %></li>
-        <li class="list-group-item">Общая плошадь: <%= block.total_square %> кв.</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Количество комнат <span class='badge'><%= block.number_of_rooms %></span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Этажность <span class='badge'><%= block.floors.count %></span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Количество квартир на каждом этаже: <span class='badge'> <%= block.apartment_numbers.count %></span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Общая плошадь: <span class='badge'> <%= block.total_square %> кв.</span></li>
       </ul>
-      <div class="card-body">
-        <%= link_to 'Посмотреть', block_path(block), class: 'card-link' %>
-      </div>
     </div>
   <% end %>
 </div>

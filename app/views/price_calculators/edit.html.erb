@@ -1,0 +1,12 @@
+<% content_for :title, "Editing price calculator" %>
+
+<h1>Editing price calculator</h1>
+
+<%= render "form", price_calculator: @price_calculator %>
+
+<br>
+
+<div>
+  <%= link_to "Show this price calculator", @price_calculator %> |
+  <%= link_to "Back to price calculators", price_calculators_path %>
+</div>

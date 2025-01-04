@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Price calculators" %>
+
+<h1>Price calculators</h1>
+
+<div id="price_calculators">
+  <% @price_calculators.each do |price_calculator| %>
+    <%= render price_calculator %>
+    <p>
+      <%= link_to "Show this price calculator", price_calculator %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New price calculator", new_price_calculator_path %>
