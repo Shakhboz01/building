@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_04_054617) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_05_122346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -87,6 +87,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_04_054617) do
     t.index ["apartment_number_id"], name: "index_room_squares_on_apartment_number_id"
   end
 
+  create_table "top_ups", force: :cascade do |t|
+    t.decimal "amount", precision: 16, scale: 2
+    t.string "comment"
+    t.bigint "contract_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contract_id"], name: "index_top_ups_on_contract_id"
+    t.index ["user_id"], name: "index_top_ups_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.integer "role", default: 0, null: false
@@ -110,4 +121,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_04_054617) do
   add_foreign_key "floors", "blocks"
   add_foreign_key "price_calculators", "apartment_numbers"
   add_foreign_key "room_squares", "apartment_numbers"
+  add_foreign_key "top_ups", "contracts"
+  add_foreign_key "top_ups", "users"
 end

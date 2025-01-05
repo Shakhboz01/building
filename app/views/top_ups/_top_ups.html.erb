@@ -1,0 +1,24 @@
+<div class='container'>
+  <table class='table table-hover col-sm-6'>
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Сумма (<%= num_to_uzs top_ups.sum(:amount) %>)</th>
+              <th>Комментарий</th>
+              <th>Дата</th>
+              <th>Регистратор</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% top_ups.each do |top_up| %>
+          <tr>
+            <td><%= top_up.id %></td>
+            <td><%= top_up.amount %></td>
+            <td><%= top_up.comment %></td>
+            <td><%= top_up.created_at %></td>
+            <td><%= top_up.user.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>

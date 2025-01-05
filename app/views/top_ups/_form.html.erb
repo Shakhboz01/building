@@ -1,0 +1,24 @@
+<%= simple_form_for(top_up, class: 'col-sm-6') do |form| %>
+  <% if top_up.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(top_up.errors.count, "ошибка") %> не позволяют сохранить этот топ-ап:</h4>
+      <ul>
+        <% top_up.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.association :contract, label: false, as: :hidden %>
+  <%= form.input :amount,
+                 label: "Сумма",
+                 input_html: { class: "form-control shadow" },
+                 required: true %>
+
+  <%= form.input :comment,
+                 label: "Комментарий",
+                 input_html: { class: "form-control shadow" } %>
+  <div>
+    <%= form.button :submit, "Сохранить", class: "btn btn-primary shadow" %>
+  </div>
+<% end %>

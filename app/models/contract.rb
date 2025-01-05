@@ -1,6 +1,7 @@
 class Contract < ApplicationRecord
   belongs_to :user
   belongs_to :apartment
+  has_many :top_ups
   validate :percent_is_within_100
   validate :none_empty_prices
   validates_presence_of :price_per_square
