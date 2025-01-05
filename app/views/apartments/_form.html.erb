@@ -12,11 +12,11 @@
   <% end %>
 
   <div>
-    <%= form.association :floor, collection: Floor.all.map { |floor| [floor.name, floor.id] } %>
+    <%= form.association :floor, collection: @floors %>
   </div>
 
   <div>
-    <%= form.association :block, collection: Block.all.pluck(:name, :id) %>
+    <%= form.association :block, collection: @blocks %>
   </div>
 
   <div>
@@ -25,7 +25,7 @@
   </div>
 
   <div>
-    <%= form.association :apartment_number, collection: ApartmentNumber.all.map { |apartment_number| [apartment_number.name, apartment_number.id] } %>
+    <%= form.association :apartment_number, collection: @apartment_numbers %>
   </div>
 
   <div>

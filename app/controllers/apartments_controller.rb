@@ -13,6 +13,14 @@ class ApartmentsController < ApplicationController
   # GET /apartments/new
   def new
     @apartment = Apartment.new
+    @blocks = Block.all.pluck(:name, :id)
+    @floors = Floor.all.map { |floor| [floor.name, floor.id] }
+    @apartment_numbers = ApartmentNumber.all.map { |apartment_number| [apartment_number.name, apartment_number.id] }
+    if params[:block_id].present?
+      block = Block.find(params[:block_id])
+      @floors = block.floors.all.map { |floor| [floor.name, floor.id] }
+      @apartment_numbers = block.apartment_numbers.all.map { |apartment_number| [apartment_number.name, apartment_number.id] }
+    end
   end
 
   # GET /apartments/1/edit
