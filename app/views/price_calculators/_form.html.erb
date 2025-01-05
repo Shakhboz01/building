@@ -13,7 +13,7 @@
       <% end %>
 
       <div class="mb-3">
-        <%= form.association :apartment_number, label: "Номер квартиры", input_html: { class: "form-control shadow" } %>
+        <%= form.association :apartment_number, label: false, as: :hidden %>
       </div>
 
       <div class="mb-3">
@@ -34,7 +34,7 @@
 
       <div class="form-group">
         <div class="col-md-8">
-          <%= form.button :submit, "Сохранить", class: "btn btn-primary" %>
+          <%= form.button :submit, "Далее", class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>

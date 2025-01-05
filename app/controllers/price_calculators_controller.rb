@@ -12,7 +12,7 @@ class PriceCalculatorsController < ApplicationController
 
   # GET /price_calculators/new
   def new
-    @price_calculator = PriceCalculator.new
+    @price_calculator = PriceCalculator.new(apartment_number_id: params[:apartment_number_id])
   end
 
   # GET /price_calculators/1/edit

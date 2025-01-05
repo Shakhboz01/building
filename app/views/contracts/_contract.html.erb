@@ -1,0 +1,60 @@
+<div class='row'>
+  <div class='col-sm-3'></div>
+  <ul class="list-group col-sm-6">
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      Плошадь
+      <span class="badge badge-primary"><%= contract.apartment.apartment_number.square %> кв. м.</span>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      Первоначальный взнос
+      <span class="badge badge-primary"><%= num_to_uzs contract.first_payment_in_cash %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Первоначальный взнос в процентах
+      <span class="badge badge-primary badge-pill"><%= contract.first_payment_in_percent %>%</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Cумма продажи
+      <span class="badge badge-primary badge-pill"><%= num_to_uzs contract.total_price %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Цена за 1 кв. м.
+      <span class="badge badge-primary badge-pill"><%= num_to_uzs contract.price_per_square %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Cрок
+      <span class="badge badge-primary badge-pill"><%= contract.number_of_months %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Eжемесячный платежь
+      <span class="badge badge-primary badge-pill"><%= num_to_uzs contract.price_per_month %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      имя
+      <span class="badge badge-primary badge-pill"><%= contract.fullname %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      ПИНФЛ
+      <span class="badge badge-primary badge-pill"><%= contract.pinfl %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      паспорт #
+      <span class="badge badge-primary badge-pill"><%= contract.passport_number %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Дата контракта
+      <span class="badge badge-primary badge-pill"><%= contract.created_at %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Регистратор
+      <span class="badge badge-primary badge-pill"><%= contract.user.name %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Статус
+      <span class="badge-<%= contract.status %>"><%= contract_status(contract.status) %></span>
+    </li>
+    <div>
+      <%= link_to 'Изменить', edit_contract_path(contract), class: 'btn btn-warning m-3' %>
+    </div>
+  </ul>
+</div>

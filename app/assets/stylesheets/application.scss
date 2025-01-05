@@ -55,10 +55,14 @@
     background-color: #f44;
     color: #fff;
   }
+  .apartment.paid {
+    background-color: rgb(119, 6, 6);
+    color: white;
+  }
 
-  .apartment.available {
-    background-color: #4caf50;
-    color: #fff;
+  .apartment.pending {
+    background-color: rgb(119, 6, 6);
+    color: white;
   }
 
   .apartment .comment {
@@ -69,6 +73,31 @@
   .badge {
     padding: 3px 6px;
     background-color: blue;
+    font-weight: bold;
+    border-radius: 11px;
+  }
+
+  .badge-pending {
+    padding: 3px 6px;
+    background-color: yellow;
+    font-weight: bold;
+    border-radius: 11px;
+  }
+  .badge-paid {
+    padding: 3px 6px;
+    background-color: green;
+    font-weight: bold;
+    border-radius: 11px;
+  }
+  .badge-started {
+    padding: 3px 6px;
+    background-color: blue;
+    font-weight: bold;
+    border-radius: 11px;
+  }
+  .badge-rejected {
+    padding: 3px 6px;
+    background-color: red;
     font-weight: bold;
     border-radius: 11px;
   }

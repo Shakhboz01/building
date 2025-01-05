@@ -1,19 +1,30 @@
-class PriceCalculator < ApplicationRecord
-  belongs_to :apartment_number
-  before_save :set_prices
+class Contract < ApplicationRecord
+  belongs_to :user
+  belongs_to :apartment
   validate :percent_is_within_100
   validate :none_empty_prices
   validates_presence_of :price_per_square
+  validates_presence_of :fullname
+  validates_presence_of :passport_number
+  before_save :set_prices
+  validate :can_create_contract, on: :create
+  enum :status, [ :pending, :started, :paid, :rejected ], suffix: true
 
   def price_per_month
     (total_price - first_payment_in_cash) / number_of_months
   end
 
   def total_price
-    apartment_number.square * price_per_square
+    apartment.apartment_number.square * price_per_square
   end
 
   private
+
+  def can_create_contract
+    return unless apartment.is_full?
+
+    errors.add(:base, 'cannot create a contract')
+  end
 
   def set_prices
     if first_payment_in_percent.nil?

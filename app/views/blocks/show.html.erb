@@ -2,11 +2,11 @@
 <div class="building">
   <% @block.floors.order(number: :asc).each do |floor| %>
     <div class="floor">
-      <div class="floor-label text-canter">Floor <%= floor.number %></div>
+      <div class="floor-label text-canter">Этаж <%= floor.number %></div>
       <div class="apartments">
         <% floor.apartments.each do |apartment| %>
           <%= link_to apartment do %>
-            <div class="apartment <%= apartment.comment.present? ? 'reserved' : 'available' %>">
+            <div class="apartment <%= apartment.contract&.status %>">
               <%= apartment.apartment_number.number %>
               <% if apartment.comment.present? %>
                 <div class="comment"><%= apartment.comment %></div>
@@ -22,7 +22,7 @@
     <div class="apartments">
       <% @block.apartment_numbers.each do |apartment_number| %>
         <div class="apartment">
-          <%= apartment_number.number %>
+          <%= apartment_number.number %> <br>(<%= apartment_number.square %> кв. м)
         </div>
       <% end %>
     </div>

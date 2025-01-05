@@ -29,3 +29,10 @@
 
 en:
   hello: "Hello world"
+  enums:
+    contract:
+      statuses:
+        pending: "В процессе"
+        started: "Оплачивается"
+        paid: "Оплачен"
+        rejected: "Отказ"

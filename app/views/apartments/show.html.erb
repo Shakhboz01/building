@@ -1,10 +1,7 @@
-<p style="color: green"><%= notice %></p>
+<% if @apartment.is_full? %>
+  <%= render 'contracts/contract', contract: @apartment.contract %>
+<% else %>
+  <%= link_to 'Новый договор', new_contract_path(apartment_id: @apartment.id), class: 'btn btn-success' %>
+  <%= link_to 'Калькулятор', new_price_calculator_path(apartment_number_id: @apartment.apartment_number.id), class: 'btn btn-warning' %>
+<% end %>
 
-<%= render @apartment %>
-
-<div>
-  <%= link_to "Edit this apartment", edit_apartment_path(@apartment) %> |
-  <%= link_to "Back to apartments", apartments_path %>
-
-  <%= button_to "Destroy this apartment", @apartment, method: :delete %>
-</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contracts
   resources :price_calculators
   resources :room_squares
   resources :apartments
