@@ -16,7 +16,7 @@ namespace :assets do
     files.each do |file|
       # Check if the file is a regular file (not a directory)
       if File.file?(file)
-        # Precompile the file
+        # Precompile the files
         puts "Precompiling: #{file}"
         `RAILS_ENV=#{Rails.env} bundle exec rake assets:precompile:primary RAILS_ASSETS_PRECOMPILE_PATHS=#{file}`
       end
