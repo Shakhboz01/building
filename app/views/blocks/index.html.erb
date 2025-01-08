@@ -7,10 +7,11 @@
         </div>
       <% end %>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between align-items-center">Количество комнат <span class='badge'><%= block.number_of_rooms %></span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Количество квартир <span class='badge'><%= block.number_of_rooms %></span></li>
         <li class="list-group-item d-flex justify-content-between align-items-center">Этажность <span class='badge'><%= block.floors.count %></span></li>
         <li class="list-group-item d-flex justify-content-between align-items-center">Количество квартир на каждом этаже: <span class='badge'> <%= block.apartment_numbers.count %></span></li>
         <li class="list-group-item d-flex justify-content-between align-items-center">Общая плошадь: <span class='badge'> <%= block.total_square %> кв.</span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Доступные квартиры: <span class='badge'> <%= block.number_of_rooms - block.number_of_unavailable_rooms %></span></li>
       </ul>
     </div>
   <% end %>

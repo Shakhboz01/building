@@ -56,13 +56,18 @@
     color: #fff;
   }
   .apartment.paid {
-    background-color: rgb(119, 6, 6);
+    background-color: green;
     color: white;
   }
 
   .apartment.pending {
     background-color: yellow;
     color: black;
+  }
+
+  .apartment.started {
+    background-color: red !important;
+    color: white;
   }
 
   .apartment .comment {

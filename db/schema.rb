@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_05_122346) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_08_161340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_05_122346) do
     t.bigint "apartment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.integer "contract_number"
     t.index ["apartment_id"], name: "index_contracts_on_apartment_id"
     t.index ["user_id"], name: "index_contracts_on_user_id"
   end
@@ -94,6 +96,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_05_122346) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "top_up_type", default: 0
     t.index ["contract_id"], name: "index_top_ups_on_contract_id"
     t.index ["user_id"], name: "index_top_ups_on_user_id"
   end

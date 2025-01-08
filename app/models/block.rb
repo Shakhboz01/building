@@ -3,9 +3,14 @@ class Block < ApplicationRecord
   has_many :floors
   has_many :apartments
   has_many :apartment_numbers
+  has_many :contracts, through: :apartments
 
   def number_of_rooms
     apartments.count
+  end
+
+  def number_of_unavailable_rooms
+    contracts.where.not(status: :rejected).count
   end
 
   def total_square

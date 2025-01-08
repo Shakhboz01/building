@@ -26,7 +26,7 @@ class TopUpsController < ApplicationController
 
     respond_to do |format|
       if @top_up.save
-        format.html { redirect_to apartment_path(@top_up.coontract.apartment), notice: "Top up was successfully created." }
+        format.html { redirect_to apartment_path(@top_up.contract.apartment), notice: "Top up was successfully created." }
         format.json { render :show, status: :created, location: @top_up }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +66,6 @@ class TopUpsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def top_up_params
-      params.expect(top_up: [ :amount, :comment, :contract_id, :user_id ])
+      params.expect(top_up: [ :amount, :comment, :contract_id, :user_id, :top_up_type ])
     end
 end

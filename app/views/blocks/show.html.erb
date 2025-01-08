@@ -7,7 +7,7 @@
         <% floor.apartments.each do |apartment| %>
           <%= link_to apartment do %>
             <div class="apartment <%= apartment.contract&.status %>">
-              <%= apartment.apartment_number.number %>
+              <%= apartment_title(apartment) %>
               <% if apartment.comment.present? %>
                 <div class="comment"><%= apartment.comment %></div>
               <% end %>
@@ -22,7 +22,7 @@
     <div class="apartments">
       <% @block.apartment_numbers.each do |apartment_number| %>
         <div class="apartment">
-          <%= apartment_number.number %> <br>(<%= apartment_number.square %> кв. м)
+          <%= apartment_number.number %> <br>(<%= apartment_number.number_of_rooms %> хонали)
         </div>
       <% end %>
     </div>

@@ -3,7 +3,8 @@
       <thead>
           <tr>
               <th>ID</th>
-              <th>Сумма (<%= num_to_uzs top_ups.sum(:amount) %>)</th>
+              <th>Сумма</th>
+              <th>Тип</th>
               <th>Комментарий</th>
               <th>Дата</th>
               <th>Регистратор</th>
@@ -14,6 +15,7 @@
           <tr>
             <td><%= top_up.id %></td>
             <td><%= top_up.amount %></td>
+            <td><%= t("enums.top_ups.#{top_up.top_up_type}") %></td>
             <td><%= top_up.comment %></td>
             <td><%= top_up.created_at %></td>
             <td><%= top_up.user.name %></td>

@@ -15,9 +15,14 @@
                  input_html: { class: "form-control shadow" },
                  required: true %>
 
+  <%= form.input :top_up_type,
+                 label: "Выберите Тип",
+                 collection: TopUp.top_up_types.keys.map { |key| [I18n.t("enums.top_ups.#{key}"), key] },
+                 input_html: { class: "form-control shadow" },
+                 prompt: "Выберите Тип" %>
   <%= form.input :comment,
                  label: "Комментарий",
-                 input_html: { class: "form-control shadow" } %>
+                 input_html: { class: "form-control shadow" } %><br>
   <div>
     <%= form.button :submit, "Сохранить", class: "btn btn-primary shadow" %>
   </div>

@@ -36,3 +36,9 @@ en:
         started: "Оплачивается"
         paid: "Оплачен"
         rejected: "Отказ"
+        contract:
+    top_ups:
+      cash: "Наличные"
+      card: "карта"
+      bank: "банк"
+      mix: "Микс"

@@ -50,10 +50,11 @@ class ContractsController < ApplicationController
 
   # DELETE /contracts/1 or /contracts/1.json
   def destroy
+    apartment = @contract.apartment
     @contract.destroy!
 
     respond_to do |format|
-      format.html { redirect_to contracts_path, status: :see_other, notice: "Contract was successfully destroyed." }
+      format.html { redirect_to apartment_url(apartment), status: :see_other, notice: "Contract was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -66,6 +67,6 @@ class ContractsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contract_params
-      params.expect(contract: [ :first_payment_in_cash, :first_payment_in_percent, :number_of_months, :fullname, :pinfl, :passport_number, :user_id, :status, :price_per_square, :apartment_id ])
+      params.expect(contract: [ :first_payment_in_cash, :first_payment_in_percent, :number_of_months, :fullname, :pinfl, :passport_number, :user_id, :status, :price_per_square, :apartment_id, :contract_number, :phone_number ])
     end
 end
