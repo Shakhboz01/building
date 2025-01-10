@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <%= simple_form_for(price_calculator, html: { class: "form-horizontal col-sm-6" }) do |form| %>
+    <%= simple_form_for(price_calculator, html: { class: "text-white form-horizontal col-sm-6" }) do |form| %>
       <% if price_calculator.errors.any? %>
         <div class="alert alert-danger">
           <h4><%= pluralize(price_calculator.errors.count, "ошибка", "ошибки", "ошибок") %> не позволили сохранить данные:</h4>

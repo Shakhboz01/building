@@ -5,25 +5,29 @@
       Плошадь
       <span class="badge badge-primary"><%= @price_calculator.apartment_number.square %> кв. м.</span>
     </li>
-    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-      Первоначальный взнос
-      <span class="badge badge-primary"><%= num_to_uzs @price_calculator.first_payment_in_cash %></span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Первоначальный взнос в процентах
-      <span class="badge badge-primary badge-pill"><%= @price_calculator.first_payment_in_percent %>%</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Cумма продажи
-      <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.total_price %></span>
-    </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Цена за 1 кв. м.
       <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.price_per_square %></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      Cрок
-      <span class="badge badge-primary badge-pill"><%= @price_calculator.number_of_months %></span>
+      Cумма продажи
+      <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.total_price %></span>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      Первоначальный взнос в процентах
+      <span class="badge badge-primary badge-pill"><%= @price_calculator.first_payment_in_percent %>%</span>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      Первоначальный взнос в суммах
+      <span class="badge badge-primary"><%= num_to_uzs @price_calculator.first_payment_in_cash %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Остаток
+      <span class="badge badge-primary badge-pill"><%= num_to_uzs(@price_calculator.total_price - @price_calculator.first_payment_in_cash) %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Cрок (мес.)
+      <span class="badge badge-primary badge-pill"><%= @price_calculator.number_of_months.to_i %></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Eжемесячный платежь

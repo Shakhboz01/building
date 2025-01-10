@@ -32,7 +32,7 @@ en:
   enums:
     contract:
       statuses:
-        pending: "В процессе"
+        pending: "В процессе (брон)"
         started: "Оплачивается"
         paid: "Оплачен"
         rejected: "Отказ"

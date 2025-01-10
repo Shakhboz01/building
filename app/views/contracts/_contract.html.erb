@@ -31,7 +31,7 @@
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Cрок (мес.)
-      <span class="badge badge-primary badge-pill"><%= contract.number_of_months %></span>
+      <span class="badge badge-primary badge-pill"><%= contract.number_of_months.to_i %></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Eжемесячный платежь
@@ -73,8 +73,10 @@
       <% end %>
     </div>
   </ul>
+  <div class='bg-white'>
   <% if contract.top_ups.exists? %>
     <h4>История оплат (<%= num_to_uzs contract.total_price %> - <%= num_to_uzs contract.top_ups.sum(:amount) %> = <%= num_to_uzs(contract.total_price - contract.top_ups.sum(:amount)) %>)</h4>
     <%= render 'top_ups/top_ups', top_ups: contract.top_ups %>
   <% end %>
+  </div>
 </div>

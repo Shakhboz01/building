@@ -10,6 +10,12 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+body {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('building.jpg');
+  background-size: cover;
+  position: relative;
+}
+
 .building {
     display: flex;
     flex-direction: column-reverse;

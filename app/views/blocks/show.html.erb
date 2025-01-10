@@ -1,8 +1,8 @@
-<h1 class='text-center'><%= @block.name %></h1>
+<h1 class='text-center text-white'><%= @block.name %></h1>
 <div class="building">
   <% @block.floors.order(number: :asc).each do |floor| %>
     <div class="floor">
-      <div class="floor-label text-canter">Этаж <%= floor.number %></div>
+      <div class="floor-label text-white text-canter">Этаж <%= floor.number %></div>
       <div class="apartments">
         <% floor.apartments.each do |apartment| %>
           <%= link_to apartment do %>
