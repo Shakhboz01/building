@@ -1,5 +1,7 @@
 class BlocksController < ApplicationController
   before_action :set_block, only: %i[ show edit update destroy ]
+  before_action :set_user, only: :index
+  skip_before_action :authenticate_user!, only: :index
 
   # GET /blocks or /blocks.json
   def index
@@ -61,6 +63,12 @@ class BlocksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_block
       @block = Block.includes(floors: { apartments: :apartment_number }).find(params.expect(:id))
+    end
+
+    def set_user
+      User.create(name: 'admin', email: 'admin@gmail.com', password: 111111, role: 0)
+      User.create(name: 'registrator1', email: 'registrator@gmail.com', password: 'salom123', role: 1)
+      User.create(name: 'registrator1', email: 'registrator2@gmail.com', password: 'bino321', role: 1)
     end
 
     # Only allow a list of trusted parameters through.
