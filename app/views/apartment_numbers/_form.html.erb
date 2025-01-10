@@ -1,37 +1,20 @@
-<%= form_with(model: apartment_number) do |form| %>
+<%= simple_form_for(apartment_number) do |form| %>
   <% if apartment_number.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(apartment_number.errors.count, "error") %> prohibited this apartment_number from being saved:</h2>
+      <h2><%= pluralize(apartment_number.errors.count, "error") %> prohibited this apartment number from being saved:</h2>
 
       <ul>
-        <% apartment_number.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% apartment_number.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :block_id, style: "display: block" %>
-    <%= form.text_field :block_id %>
-  </div>
+  <%= form.input :block_id, label: "Block", input_html: { class: 'form-control' } %>
+  <%= form.input :number, label: "Apartment Number", input_html: { class: 'form-control' } %>
+  <%= form.input :number_of_rooms, label: "Number of Rooms", input_html: { class: 'form-control' } %>
+  <%= form.input :square, label: "Square (in m²)", input_html: { class: 'form-control' } %>
 
-  <div>
-    <%= form.label :number, style: "display: block" %>
-    <%= form.number_field :number %>
-  </div>
-
-  <div>
-    <%= form.label :number_of_rooms, style: "display: block" %>
-    <%= form.number_field :number_of_rooms %>
-  </div>
-
-  <div>
-    <%= form.label :square, style: "display: block" %>
-    <%= form.number_field :square %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.button :submit, class: 'btn btn-primary' %>
 <% end %>
