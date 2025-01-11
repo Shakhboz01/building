@@ -1,6 +1,6 @@
-<div class='container row'>
-  <div class='col-sm-3'></div>
-  <ul class="list-group col-sm-6">
+<div class='card my-4'>
+  <h4 class='p-2'>Информация о договоре</h4>
+  <ul class="list-group">
     <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
       Номер договора
       <span class="badge badge-primary"><%= contract.contract_number %></span>
@@ -73,10 +73,11 @@
       <% end %>
     </div>
   </ul>
-  <div class='bg-white'>
-  <% if contract.top_ups.exists? %>
+</div>
+
+<% if contract.top_ups.exists? %>
+  <div class='card mt-3 mb-4'>
     <h4>История оплат (<%= num_to_uzs contract.total_price %> - <%= num_to_uzs contract.top_ups.sum(:amount) %> = <%= num_to_uzs(contract.total_price - contract.top_ups.sum(:amount)) %>)</h4>
     <%= render 'top_ups/top_ups', top_ups: contract.top_ups %>
-  <% end %>
   </div>
-</div>
+<% end %>
