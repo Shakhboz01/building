@@ -87,5 +87,5 @@ production:
   username: <%= ENV["PGUSER"] %>
   port: <%= ENV["PGPORT"] %>
   password: <%= ENV["PGPASSWORD"] %>
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV["DATABASE_PUBLIC_URL"] %>
   pool: 100
