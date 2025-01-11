@@ -4,7 +4,7 @@
     <div class="floor">
       <div class="floor-label text-white text-canter">Этаж <%= floor.number %></div>
       <div class="apartments">
-        <% floor.apartments.each do |apartment| %>
+        <% floor.apartments.order(:apartment_number_id).includes(:contract).each do |apartment| %>
           <%= link_to apartment do %>
             <div class="apartment <%= apartment.contract&.status %>">
               <%= apartment_title(apartment) %>
