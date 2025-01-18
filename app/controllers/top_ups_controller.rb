@@ -12,6 +12,7 @@ class TopUpsController < ApplicationController
 
   # GET /top_ups/new
   def new
+    not_allowed_for_guest
     @top_up = TopUp.new(contract_id: params[:contract_id])
   end
 
@@ -21,6 +22,7 @@ class TopUpsController < ApplicationController
 
   # POST /top_ups or /top_ups.json
   def create
+    not_allowed_for_guest
     @top_up = TopUp.new(top_up_params)
     @top_up.user_id = current_user.id
 

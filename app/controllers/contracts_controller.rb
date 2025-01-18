@@ -12,6 +12,7 @@ class ContractsController < ApplicationController
 
   # GET /contracts/new
   def new
+    not_allowed_for_guest
     @contract = Contract.new(apartment_id: params[:apartment_id])
   end
 
@@ -21,6 +22,7 @@ class ContractsController < ApplicationController
 
   # POST /contracts or /contracts.json
   def create
+    not_allowed_for_guest
     @contract = Contract.new(contract_params)
     @contract.user_id = current_user.id
 
@@ -37,6 +39,7 @@ class ContractsController < ApplicationController
 
   # PATCH/PUT /contracts/1 or /contracts/1.json
   def update
+    not_allowed_for_guest
     respond_to do |format|
       if @contract.update(contract_params)
         format.html { redirect_to @contract, notice: "Contract was successfully updated." }
