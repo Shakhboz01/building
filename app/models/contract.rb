@@ -9,6 +9,10 @@ class Contract < ApplicationRecord
   validates_presence_of :passport_number
   before_save :set_prices
   validate :can_create_contract, on: :create
+  validates :payment_day, numericality: {
+    greater_than_or_equal_to: 1,
+    less_than_or_equal_to: 31
+  }, allow_nil: true
   enum :status, [ :pending, :started, :paid, :rejected ], suffix: true
 
   def price_per_month

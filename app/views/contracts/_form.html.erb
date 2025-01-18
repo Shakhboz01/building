@@ -19,6 +19,9 @@
                  input_html: { class: "form-control shadow" },
                  prompt: "Выберите статус" %>
       </div>
+      <div class="mb-3 d-flex justify-content-between">
+        <%= form.input :payment_day, label: "число ежемесячной оплаты", input_html: { class: "form-control shadow" } %>
+      </div>
     <% else %>
       <div class="mb-3 d-flex justify-content-between">
         <%= form.input :first_payment_in_cash, label: "Первоначальный взнос (наличные)", input_html: { class: "form-control shadow" } %>
