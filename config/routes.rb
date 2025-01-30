@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :top_ups
-  resources :contracts
+  resources :contracts do
+    get :scheduled_day_contracts, on: :collection
+  end
   resources :price_calculators
   resources :room_squares
   resources :apartments

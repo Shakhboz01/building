@@ -10,6 +10,9 @@
           <%= button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure you want to sign out?' } %>
         </li>
       <% end %>
+       <li class="nav-item">
+        <%= link_to 'Должники', scheduled_day_contracts_contracts_path, class: 'nav-link' %>
+      </li>
     </ul>
   </div>
 </nav>

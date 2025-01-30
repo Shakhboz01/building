@@ -2,6 +2,8 @@ class Contract < ApplicationRecord
   belongs_to :user
   belongs_to :apartment
   has_many :top_ups, dependent: :destroy
+  has_one :block, through: :apartment
+  has_one :apartment_number, through: :apartment
   validate :percent_is_within_100
   validate :none_empty_prices
   validates_presence_of :price_per_square
@@ -17,6 +19,10 @@ class Contract < ApplicationRecord
 
   def price_per_month
     (total_price - first_payment_in_cash) / number_of_months
+  end
+
+  def last_top_up
+    top_ups.order(:created_at).last
   end
 
   def total_price

@@ -62,6 +62,18 @@ class ContractsController < ApplicationController
     end
   end
 
+  def scheduled_day_contracts
+    params[:selected_day] ||= Date.today.day
+    selected_day = params[:selected_day] || Date.today.day
+    selected_date = params[:selected_date]&.to_date || Date.today
+    time_range = selected_date.beginning_of_day...selected_date.end_of_day
+    @contracts =
+      Contract.where(status: :started)
+              .where(payment_day: selected_day)
+              .joins(:top_ups).distinct
+              # .where('top_ups.created_at < ?', Date.today.beginning_of_day).distinct
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
