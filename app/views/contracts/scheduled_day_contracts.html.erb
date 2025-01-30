@@ -1,0 +1,40 @@
+<div class='container'>
+  <div>
+    <%= form_with url: request.path, method: :get do |form| %>
+      <%= form.number_field :selected_day, label: 'Выберите число ежемесячной оплаты', value: params[:selected_day] %>
+      <%# <%= form.date_field :selected_date, label: 'нету оплаты в этом дате', value: params[:selected_date] %>
+      <%= form.button 'Найти', type: :submit %>
+    <% end %>
+  </div>
+  <br>
+  <div>
+    <table class='table table-hover table-striped'>
+      <thead class='bg-dark'>
+        <tr>
+          <th>ФИО</th>
+          <th>Номер телефон</th>
+          <th>Номер квартиры</th>
+          <th>Номер Контракта</th>
+          <th>статус Контракта</th>
+          <th>Последняя оплата</th>
+          <th>Сумма последней оплаты</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @contracts.each do |contract| %>
+          <tr>
+            <td><%= contract.fullname %></td>
+            <td><%= contract.passport_number %>  <%= contract.phone_number %></td>
+            <td><%= link_to contract.apartment_number.name, apartment_path(contract.apartment) %></td>
+            <td><%= contract.contract_number %></td>
+            <td class="badge-<%= contract.status %>">
+                <%= contract_status(contract.status) %>
+              </td>
+            <td><%= contract.last_top_up&.created_at %></td>
+            <td><%= num_to_uzs contract.last_top_up&.amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
