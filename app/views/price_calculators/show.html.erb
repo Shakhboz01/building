@@ -33,6 +33,12 @@
       Eжемесячный платежь
       <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.price_per_month %></span>
     </li>
-    <%= link_to 'Назад', block_path(@price_calculator.apartment_number.block) %>
   </ul>
+  <div class='col-sm-3'></div>
+  <div class='col-sm-3'></div>
+  <br/>
+  <div class='col-sm-6 mt-3'>
+    <%= render 'room_squares/room_squares', room_squares: @price_calculator.apartment_number.room_squares %>
+  </div>
+  <%= link_to 'Назад', block_path(@price_calculator.apartment_number.block) %>
 </div>
