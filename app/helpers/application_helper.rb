@@ -27,4 +27,10 @@ module ApplicationHelper
 
     datetime.strftime("%Y-%m-%d %H:%M:%S")
   end
+
+  def define_contract_status(payment_day, last_top_up_date)
+    return 'table-success' if last_top_up_date&.day == payment_day
+
+    ''
+  end
 end

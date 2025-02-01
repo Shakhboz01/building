@@ -22,7 +22,7 @@
       </thead>
       <tbody>
         <% @contracts.each do |contract| %>
-          <tr>
+          <tr class="<%= define_contract_status(contract.payment_day, contract.last_top_up&.created_at) %>">
             <td><%= contract.fullname %></td>
             <td><%= contract.passport_number %>  <%= contract.phone_number %></td>
             <td><%= link_to contract.apartment_number.name, apartment_path(contract.apartment) %></td>
