@@ -30,7 +30,7 @@
             <td class="badge-<%= contract.status %>">
                 <%= contract_status(contract.status) %>
               </td>
-            <td><%= contract.last_top_up&.created_at %></td>
+            <td><%= format_datetime(contract.last_top_up&.created_at) %></td>
             <td><%= num_to_uzs contract.last_top_up&.amount %></td>
           </tr>
         <% end %>

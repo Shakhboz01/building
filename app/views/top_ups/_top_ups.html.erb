@@ -15,7 +15,7 @@
             <td><%= num_to_uzs top_up.amount %></td>
             <td><%= t("enums.top_ups.#{top_up.top_up_type}") %></td>
             <td><%= top_up.comment %></td>
-            <td><%= top_up.created_at %></td>
+            <td><%= format_datetime(top_up.created_at) %></td>
             <td><%= top_up.user.name %></td>
           </tr>
         <% end %>

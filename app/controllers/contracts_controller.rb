@@ -70,8 +70,6 @@ class ContractsController < ApplicationController
     @contracts =
       Contract.where(status: :started)
               .where(payment_day: selected_day)
-              .joins(:top_ups).distinct
-              # .where('top_ups.created_at < ?', Date.today.beginning_of_day).distinct
   end
 
   private

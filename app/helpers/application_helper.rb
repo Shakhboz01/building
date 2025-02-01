@@ -18,7 +18,13 @@ module ApplicationHelper
     when 'rejected'
       'отказ'
     when 'pending'
-      'В процессе'
+      'В процессе (брон)'
     end
+  end
+
+  def format_datetime(datetime)
+    return if datetime.nil?
+
+    datetime.strftime("%Y-%m-%d %H:%M:%S")
   end
 end
