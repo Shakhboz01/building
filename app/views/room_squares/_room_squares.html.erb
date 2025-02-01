@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <% room_squares.each do |room_square| %>
+    <li class="list-group-item"><%= room_square.name %> - <%= room_square.square.to_i %> кв.</li>
+  <% end %>
+</ul>

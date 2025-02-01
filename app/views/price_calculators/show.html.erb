@@ -1,44 +1,161 @@
-<div class='row'>
-  <div class='col-sm-3'></div>
-  <ul class="list-group col-sm-6">
-    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-      Плошадь
-      <span class="badge badge-primary"><%= @price_calculator.apartment_number.square %> кв. м.</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Цена за 1 кв. м.
-      <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.price_per_square %></span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Cумма продажи
-      <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.total_price %></span>
-    </li>
-    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-      Первоначальный взнос в процентах
-      <span class="badge badge-primary badge-pill"><%= @price_calculator.first_payment_in_percent %>%</span>
-    </li>
-    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-      Первоначальный взнос в суммах
-      <span class="badge badge-primary"><%= num_to_uzs @price_calculator.first_payment_in_cash %></span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Остаток
-      <span class="badge badge-primary badge-pill"><%= num_to_uzs(@price_calculator.total_price - @price_calculator.first_payment_in_cash) %></span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Cрок (мес.)
-      <span class="badge badge-primary badge-pill"><%= @price_calculator.number_of_months.to_i %></span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Eжемесячный платежь
-      <span class="badge badge-primary badge-pill"><%= num_to_uzs @price_calculator.price_per_month %></span>
-    </li>
-  </ul>
-  <div class='col-sm-3'></div>
-  <div class='col-sm-3'></div>
-  <br/>
-  <div class='col-sm-6 mt-3'>
-    <%= render 'room_squares/room_squares', room_squares: @price_calculator.apartment_number.room_squares %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apartment Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px; /* Reduced font size */
+      margin: 0; /* Adjusted margins */
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h2 {
+      font-size: 16px; /* Adjusted header text size */
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .content img {
+      max-width: 90%; /* Adjusted to fit side by side */
+      height: 290px; /* Maintain aspect ratio */
+      margin: auto 5%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .horizontal-layout {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px; /* Space between sections */
+    }
+
+    .details, .rooms {
+      width: 48%; /* Split into two columns */
+    }
+
+    .details table, .rooms table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .details th, .rooms th, .details td, .rooms td {
+      border: 1px solid #ddd;
+      padding: 6px; /* Reduced padding */
+      font-size: 11px; /* Smaller table text */
+      text-align: left;
+    }
+
+    .details th, .rooms th {
+      background-color: #f4f4f4;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 10px; /* Reduced footer size */
+      color: #888;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+        padding: 10px;
+      }
+      .hide-on-print {
+        display: none;
+      }
+
+      .horizontal-layout {
+        display: flex; /* Stack sections for print if needed */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>ZARAFSHAN AVENUE</h2>
   </div>
-  <%= link_to 'Назад', block_path(@price_calculator.apartment_number.block) %>
-</div>
+
+  <div class="content">
+    <%= image_tag('block_1') %>
+    <%= image_tag('block_2') %>
+  </div>
+
+  <div class="horizontal-layout">
+    <div class="details">
+      <h4 class='text-center'>Детали Квартиры</h4>
+      <table>
+        <tr>
+          <th>Название</th>
+          <td><%= @price_calculator.apartment_number.name %></td>
+        </tr>
+        <tr>
+          <th>Площадь</th>
+          <td><%= @price_calculator.apartment_number.square %> кв. м</td>
+        </tr>
+        <tr>
+          <th>Цена за 1 кв. м</th>
+          <td><%= num_to_uzs @price_calculator.price_per_square %></td>
+        </tr>
+        <tr>
+          <th>Сумма продажи</th>
+          <td><%= num_to_uzs @price_calculator.total_price %></td>
+        </tr>
+        <tr>
+          <th>Первоначальный взнос (в %)</th>
+          <td><%= @price_calculator.first_payment_in_percent %>%</td>
+        </tr>
+        <tr>
+          <th>Первоначальный взнос (в суммах)</th>
+          <td><%= num_to_uzs @price_calculator.first_payment_in_cash %></td>
+        </tr>
+        <tr>
+          <th>Остаток</th>
+          <td><%= num_to_uzs(@price_calculator.total_price - @price_calculator.first_payment_in_cash) %></td>
+        </tr>
+        <tr>
+          <th>Срок (мес.)</th>
+          <td><%= @price_calculator.number_of_months.to_i %></td>
+        </tr>
+        <tr>
+          <th>Ежемесячный платеж</th>
+          <td><%= num_to_uzs @price_calculator.price_per_month %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="rooms">
+      <h4 class='text-center'>Площади Комнат</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Площадь (кв. м)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @price_calculator.apartment_number.room_squares.each do |room| %>
+            <tr>
+              <td><%= room.name %></td>
+              <td><%= room.square %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Данные предоставлены Бриллиант Центр. Действительно на момент запроса.</p>
+  </div>
+</body>

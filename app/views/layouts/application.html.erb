@@ -22,9 +22,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
-    <div class="notice text-white fs-3 p-3 text-center m-4"><%= notice %></div>
-    <p class="alert"><%= alert %></p>
+    <div class='hide-on-print'>
+      <%= render 'layouts/navigation' %>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>

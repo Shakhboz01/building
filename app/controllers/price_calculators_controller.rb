@@ -25,7 +25,7 @@ class PriceCalculatorsController < ApplicationController
 
     respond_to do |format|
       if @price_calculator.save
-        format.html { redirect_to @price_calculator, notice: "Price calculator was successfully created." }
+        format.html { redirect_to @price_calculator }
         format.json { render :show, status: :created, location: @price_calculator }
       else
         format.html { render :new, status: :unprocessable_entity }
