@@ -8,6 +8,9 @@ class TopUpsController < ApplicationController
 
   # GET /top_ups/1 or /top_ups/1.json
   def show
+    respond_to do |format|
+      format.pdf { send_pdf }
+    end
   end
 
   # GET /top_ups/new
@@ -61,6 +64,18 @@ class TopUpsController < ApplicationController
   end
 
   private
+
+  def send_pdf
+    receipt = GenerateTopUpsReceipts.run!(
+      top_ups: TopUp.where(id: @top_up.id),
+      contract: @top_up.contract
+    )
+    send_data receipt.render,
+      filename: "#{@top_up.created_at.strftime("%Y-%m-%d")}-gorails-receipt.pdf",
+      type: "application/pdf",
+      disposition: :inline
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_top_up
       @top_up = TopUp.find(params.expect(:id))

@@ -112,3 +112,17 @@ body {
     font-weight: bold;
     border-radius: 11px;
   }
+
+  @media print {
+    body {
+      margin: 0;
+      padding: 10px;
+    }
+    .hide-on-print {
+      display: none;
+    }
+
+    .horizontal-layout {
+      display: flex; /* Stack sections for print if needed */
+    }
+  }

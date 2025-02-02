@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :top_ups
   resources :contracts do
     get :scheduled_day_contracts, on: :collection
+    get :print_top_ups, on: :member
+    get :print, on: :member
   end
   resources :price_calculators
   resources :room_squares

@@ -4,7 +4,7 @@
           <tr>
               <th>Сумма</th>
               <th>Тип</th>
-              <th>Комментарий</th>
+              <th>Комментарие</th>
               <th>Дата</th>
               <th>Регистратор</th>
           </tr>
@@ -17,6 +17,7 @@
             <td><%= top_up.comment %></td>
             <td><%= format_datetime(top_up.created_at) %></td>
             <td><%= top_up.user.name %></td>
+            <td><%= link_to 'Печатать', top_up_path(top_up, format: :pdf) %></td>
           </tr>
         <% end %>
       </tbody>

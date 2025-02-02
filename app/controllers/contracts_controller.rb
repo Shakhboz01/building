@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  before_action :set_contract, only: %i[ show edit update destroy ]
+  before_action :set_contract, only: %i[ show edit update destroy print print_top_ups ]
 
   # GET /contracts or /contracts.json
   def index
@@ -71,6 +71,19 @@ class ContractsController < ApplicationController
       Contract.where(status: :started)
               .where(payment_day: selected_day)
   end
+
+  def print_top_ups
+    receipt = GenerateTopUpsReceipts.run!(
+      top_ups: @contract.top_ups.order(:created_at),
+      contract: @contract
+    )
+    send_data receipt.render,
+      filename: "#{DateTime.current.strftime("%Y-%m-%d %H-%M-%S")}-top_ups.pdf",
+      type: "application/pdf",
+      disposition: :inline
+  end
+
+  def print; end
 
   private
     # Use callbacks to share common setup or constraints between actions.

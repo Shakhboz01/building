@@ -1,0 +1,94 @@
+<div class='container'>
+  <h2 class='text-center'>ZARAFSHAN AVENUE</h2>
+  Дата выписки: <%= format_datetime(DateTime.current) %>
+  <hr>
+  <table class='table table-bordered'>
+    <tbody>
+      <tr>
+        <th>Номер договора</th>
+        <td><%= @contract.contract_number %></td>
+      </tr>
+
+      <tr>
+        <th>Плошадь</th>
+        <td><%= @contract.apartment.apartment_number.square %> кв. м.</td>
+      </tr>
+
+      <tr>
+        <th>Цена за 1 кв. м.</th>
+        <td><%= num_to_uzs @contract.price_per_square %></td>
+      </tr>
+
+      <tr>
+        <th>Cумма продажи</th>
+        <td><%= num_to_uzs @contract.total_price %></td>
+      </tr>
+
+      <tr>
+        <th>Первоначальный взнос в процентах</th>
+        <td><%= @contract.first_payment_in_percent %></td>
+      </tr>
+
+      <tr>
+        <th>Первоначальный взнос в суммах</th>
+        <td><%= num_to_uzs @contract.first_payment_in_cash %></td>
+      </tr>
+
+      <tr>
+        <th>Остаток</th>
+        <td><%= num_to_uzs(@contract.total_price - @contract.first_payment_in_cash) %></td>
+      </tr>
+
+      <tr>
+        <th>Cрок (мес.)</th>
+        <td><%= @contract.number_of_months.to_i %></td>
+      </tr>
+
+      <tr>
+        <th>Eжемесячный платежь</th>
+        <td><%= num_to_uzs @contract.price_per_month %></td>
+      </tr>
+
+      <tr>
+        <th>Ф.И.О</th>
+        <td><%= @contract.fullname %></td>
+      </tr>
+
+      <tr>
+        <th>ПИНФЛ</th>
+        <td><%= @contract.pinfl %></td>
+      </tr>
+
+      <tr>
+        <th>Номер телефона</th>
+        <td><%= @contract.passport_number %></td>
+      </tr>
+
+      <tr>
+        <th>Номер телефона 2</th>
+        <td><%= @contract.phone_number %></td>
+      </tr>
+
+      <tr>
+        <th>Дата договора</th>
+        <td><%= format_datetime @contract.created_at %></td>
+      </tr>
+
+      <tr>
+        <th>Регистратор</th>
+        <td><%= @contract.user.name %></td>
+      </tr>
+
+      <tr>
+        <th>Статус</th>
+        <td><%= contract_status(@contract.status) %></td>
+      </tr>
+      <% unless @contract.payment_day.nil? %>
+        <tr>
+          <th>число ежемесячной оплаты</th>
+          <td><%= @contract.payment_day %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
