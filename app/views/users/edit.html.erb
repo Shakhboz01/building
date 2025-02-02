@@ -1,12 +1,17 @@
-<% content_for :title, "Editing user" %>
+<div class='card'>
 
-<h1>Editing user</h1>
+<h1>Edit User</h1>
 
-<%= render "form", user: @user %>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :name, label: "Full Name" %>
+  <%= f.input :email, label: "Email Address" %>
+  <%= f.input :password, label: "Password (Leave blank to keep current password)", hint: "Leave blank if you do not wish to change it" %>
+  <%= f.input :password_confirmation, label: "Confirm Password" %>
+  <%= f.input :role, collection: User.roles.keys.map { |role| [role.humanize, role] }, prompt: "Select Role", label: "Role" %>
+  <%= f.input :banned, as: :boolean, label: "Banned" %>
 
-<br>
+  <%= f.button :submit, "Update User", class: "btn btn-primary" %>
+<% end %>
 
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+<%= link_to "Back", users_path, class: "btn btn-secondary" %>
 </div>

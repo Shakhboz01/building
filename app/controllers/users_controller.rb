@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  # before_action :authorize_admin!
 
   # GET /users or /users.json
   def index
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to users_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +66,10 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.expect(user: [ :name, :role ])
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :banned)
+    end
+
+    def authorize_admin!
+      redirect_to root_path, alert: "Access denied." unless current_user.admin?
     end
 end
