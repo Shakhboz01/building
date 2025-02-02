@@ -10,9 +10,10 @@ class TopUp < ApplicationRecord
 
   def send_message
     message =
-      "<b>Оплата</b>" \n
-      "<b>Cумма: </b> #{amount}"
-
+      "<b>Оплата</b>\n" \
+      "<b>Cумма: </b> #{amount}\n" \
+      "<b>Регистратор: </b> #{user.name}\n"
+    message << "<b>Комментарие:</b> #{comment}" unless comment.nil?
     SendMessageJob.perform_later(message)
   end
 end
