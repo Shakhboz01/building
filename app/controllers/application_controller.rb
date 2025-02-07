@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_banned_user
-    return unless current_user.banned
+    return unless current_user&.banned
 
     render plain: 'You are banned'
   end
