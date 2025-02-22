@@ -4,9 +4,10 @@ module ApplicationHelper
   end
 
   def apartment_title(apartment)
-    return "#{apartment.apartment_number.square} кв.м" unless apartment.is_full?
+    # return "#{apartment.apartment_number.square} кв.м" unless apartment.is_full?
 
-    apartment.contract.contract_number
+    # apartment.contract.contract_number
+    "#{apartment.apartment_number.square} кв.м"
   end
 
   def contract_status(status)
