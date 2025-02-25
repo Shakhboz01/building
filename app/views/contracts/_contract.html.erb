@@ -46,12 +46,24 @@
       <span class="badge badge-primary badge-pill"><%= contract.pinfl %></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      Номер телефона
+      адрес
+      <span class="badge badge-primary badge-pill"><%= contract.address %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Номер паспорта
       <span class="badge badge-primary badge-pill"><%= contract.passport_number %></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      Номер телефона 2
+      Дата выдачи паспорта
+      <span class="badge badge-primary badge-pill"><%= contract.passport_date %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Номер телефона
       <span class="badge badge-primary badge-pill"><%= contract.phone_number %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Номер телефона 2
+      <span class="badge badge-primary badge-pill"><%= contract.extra_phone_number %></span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Дата договора
@@ -64,6 +76,10 @@
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Статус
       <span class="badge-<%= contract.status %>"><%= contract_status(contract.status) %></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Последний cрок оплаты
+      <span class=""><%= contract.deadline %></span>
     </li>
     <% unless contract.payment_day.nil? %>
       <li class="list-group-item d-flex justify-content-between align-items-center">

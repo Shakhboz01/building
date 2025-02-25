@@ -93,6 +93,13 @@ class ContractsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contract_params
-      params.expect(contract: [ :payment_day, :first_payment_in_cash, :first_payment_in_percent, :number_of_months, :fullname, :pinfl, :passport_number, :user_id, :status, :price_per_square, :apartment_id, :contract_number, :phone_number ])
+      params.expect(
+        contract: [
+          :payment_day, :first_payment_in_cash, :first_payment_in_percent, :number_of_months,
+          :fullname, :pinfl, :passport_number, :user_id, :status, :price_per_square,
+          :apartment_id, :contract_number, :phone_number, :address, :pinfl, :extra_phone_number,
+          :deadline, :passport_date
+        ]
+      )
     end
 end
