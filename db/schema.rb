@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_01_064402) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_01_072217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -77,14 +77,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_01_064402) do
   end
 
   create_table "price_calculators", force: :cascade do |t|
-    t.bigint "apartment_number_id", null: false
+    t.bigint "apartment_number_id"
     t.decimal "price_per_square", precision: 15, scale: 2
     t.decimal "first_payment_in_cash", precision: 15, scale: 2
     t.decimal "first_payment_in_percent", precision: 5, scale: 2
     t.decimal "number_of_months", default: "36.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "specific_epartment_number_id"
     t.index ["apartment_number_id"], name: "index_price_calculators_on_apartment_number_id"
+    t.index ["specific_epartment_number_id"], name: "index_price_calculators_on_specific_epartment_number_id"
   end
 
   create_table "room_squares", force: :cascade do |t|
@@ -144,6 +146,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_01_064402) do
   add_foreign_key "contracts", "users"
   add_foreign_key "floors", "blocks"
   add_foreign_key "price_calculators", "apartment_numbers"
+  add_foreign_key "price_calculators", "specific_epartment_numbers"
   add_foreign_key "room_squares", "apartment_numbers"
   add_foreign_key "room_squares", "specific_epartment_numbers"
   add_foreign_key "specific_epartment_numbers", "blocks"

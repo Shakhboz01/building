@@ -12,7 +12,16 @@ class PriceCalculatorsController < ApplicationController
 
   # GET /price_calculators/new
   def new
-    @price_calculator = PriceCalculator.new(apartment_number_id: params[:apartment_number_id])
+    @apartment = Apartment.find(params[:apartment_id])
+    params =
+      if @apartment.specific_epartment_number
+        { specific_epartment_number_id: @apartment.specific_epartment_number_id }
+      else
+        { apartment_number_id: @apartment.apartment_number_id }
+      end
+
+
+    @price_calculator = PriceCalculator.new(params)
   end
 
   # GET /price_calculators/1/edit
@@ -65,6 +74,6 @@ class PriceCalculatorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def price_calculator_params
-      params.expect(price_calculator: [ :apartment_number_id, :price_per_square, :first_payment_in_cash, :first_payment_in_percent, :number_of_months ])
+      params.expect(price_calculator: [ :specific_epartment_number_id, :apartment_number_id, :price_per_square, :first_payment_in_cash, :first_payment_in_percent, :number_of_months ])
     end
 end

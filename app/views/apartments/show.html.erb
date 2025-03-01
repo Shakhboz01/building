@@ -31,7 +31,7 @@
       </div>
     <% else %>
       <%= link_to 'Новый договор', new_contract_path(apartment_id: @apartment.id), class: 'btn btn-success' %>
-      <%= link_to 'Калькулятор', new_price_calculator_path(apartment_number_id: @apartment.apartment_number.id), class: 'btn btn-warning' %>
+      <%= link_to 'Калькулятор', new_price_calculator_path(apartment_id: @apartment.id, ), class: 'btn btn-warning' %>
     <% end %>
   </div>
 </div>

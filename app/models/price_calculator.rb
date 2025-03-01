@@ -1,5 +1,6 @@
 class PriceCalculator < ApplicationRecord
-  belongs_to :apartment_number
+  belongs_to :apartment_number, optional: true
+  belongs_to :specific_epartment_number, optional: true
   before_save :set_prices
   validate :percent_is_within_100
   validate :none_empty_prices
@@ -9,8 +10,24 @@ class PriceCalculator < ApplicationRecord
     (total_price - first_payment_in_cash) / number_of_months
   end
 
+  def apartment_number_id
+    return super unless specific_epartment_number
+
+    specific_epartment_number_id
+  end
+
+  def apartment_number
+    return super unless specific_epartment_number
+
+    specific_epartment_number
+  end
+
+  def square
+    apartment_number&.square || specific_epartment_number.square
+  end
+
   def total_price
-    apartment_number.square * price_per_square
+    square * price_per_square
   end
 
   private

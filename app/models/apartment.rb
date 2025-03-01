@@ -11,6 +11,18 @@ class Apartment < ApplicationRecord
     !contracts.pluck(:status).all?('rejected')
   end
 
+  def apartment_number_id
+    return super unless specific_epartment_number
+
+    specific_epartment_number_id
+  end
+
+  def apartment_number
+    return super unless specific_epartment_number
+
+    specific_epartment_number
+  end
+
   def contract
     contracts.order(id: :desc).first
   end
