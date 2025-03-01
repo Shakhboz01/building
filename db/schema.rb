@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_01_061257) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_01_064402) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -31,9 +31,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_01_061257) do
     t.bigint "apartment_number_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "specific_epartment_number_id"
     t.index ["apartment_number_id"], name: "index_apartments_on_apartment_number_id"
     t.index ["block_id"], name: "index_apartments_on_block_id"
     t.index ["floor_id"], name: "index_apartments_on_floor_id"
+    t.index ["specific_epartment_number_id"], name: "index_apartments_on_specific_epartment_number_id"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -137,6 +139,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_01_061257) do
   add_foreign_key "apartments", "apartment_numbers"
   add_foreign_key "apartments", "blocks"
   add_foreign_key "apartments", "floors"
+  add_foreign_key "apartments", "specific_epartment_numbers"
   add_foreign_key "contracts", "apartments"
   add_foreign_key "contracts", "users"
   add_foreign_key "floors", "blocks"

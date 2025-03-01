@@ -3,6 +3,7 @@ class Block < ApplicationRecord
   has_many :floors
   has_many :apartments
   has_many :apartment_numbers
+  has_many :specific_epartment_numbers
   has_many :contracts, through: :apartments
 
   def number_of_rooms
