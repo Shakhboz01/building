@@ -33,7 +33,7 @@ class GenerateTopUpsReceipts < ActiveInteraction::Base
           nil,
         ]
         )
-      end
+    end
 
     Receipts::Receipt.new(
       font: {
