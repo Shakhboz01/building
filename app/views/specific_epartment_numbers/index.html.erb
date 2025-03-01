@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Specific epartment numbers" %>
+
+<h1>Specific epartment numbers</h1>
+
+<div id="specific_epartment_numbers">
+  <% @specific_epartment_numbers.each do |specific_epartment_number| %>
+    <%= render specific_epartment_number %>
+    <p>
+      <%= link_to "Show this specific epartment number", specific_epartment_number %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New specific epartment number", new_specific_epartment_number_path %>

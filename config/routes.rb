@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :specific_epartment_numbers
   resources :top_ups
   resources :contracts do
     get :scheduled_day_contracts, on: :collection
