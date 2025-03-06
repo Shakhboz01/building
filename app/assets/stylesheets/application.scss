@@ -114,6 +114,10 @@ body {
   }
 
   @media print {
+    .new-page {
+      page-break-before: always;
+    }
+
     body {
       margin: 0;
       padding: 10px;

@@ -83,7 +83,9 @@ class ContractsController < ApplicationController
       disposition: :inline
   end
 
-  def print; end
+  def print
+    @payment_schedule = @contract.generate_payment_schedule
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -98,7 +100,7 @@ class ContractsController < ApplicationController
           :payment_day, :first_payment_in_cash, :first_payment_in_percent, :number_of_months,
           :fullname, :pinfl, :passport_number, :user_id, :status, :price_per_square,
           :apartment_id, :contract_number, :phone_number, :address, :pinfl, :extra_phone_number,
-          :deadline, :passport_date
+          :deadline, :passport_date, :start_date
         ]
       )
     end

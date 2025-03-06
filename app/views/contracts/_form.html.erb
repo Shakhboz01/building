@@ -22,7 +22,7 @@
       <div class="mb-3 d-flex justify-content-between">
         <%= form.input :payment_day, label: "число ежемесячной оплаты", input_html: { class: "form-control shadow" } %>
       </div>
-    <% else %>
+    <% elsif !contract.persisted? || current_user.admin?  %>
       <div class="mb-3">
         <%= form.input :contract_number, label: "Номер договора", input_html: { class: "form-control shadow" } %>
       </div>
@@ -63,8 +63,9 @@
       <div class="mb-3">
         <%= form.input :number_of_months, label: "Количество месяцев", input_html: { class: "form-control shadow" } %>
       </div>
+
       <div class="mb-3">
-        <%= form.input :deadline, html5: true, as: :date, label: "последний срок оплаты", input_html: { class: "form-control shadow" } %>
+        <%= form.input :start_date, html5: true, as: :date, label: "Дата начало ежемесячной оплаты", input_html: { class: "form-control shadow" } %>
       </div>
 
       <%# # passport number %>

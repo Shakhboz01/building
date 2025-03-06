@@ -7,8 +7,10 @@ class Contract < ApplicationRecord
   validate :percent_is_within_100
   validate :none_empty_prices
   validates_presence_of :price_per_square
+  validates_presence_of :start_date
   validates_presence_of :fullname
   validates_presence_of :passport_number
+  validates_presence_of :passport_date
   before_save :set_prices
   validate :can_create_contract, on: :create
   validates :payment_day, numericality: {
@@ -28,6 +30,33 @@ class Contract < ApplicationRecord
   def total_price
     apartment.apartment_number.square * price_per_square
   end
+
+  def deadline
+    generate_payment_schedule.last[:payment_date]
+  end
+
+  def generate_payment_schedule
+    return [] if start_date.nil?
+
+    schedule = []
+    remaining = total_price - first_payment_in_cash
+    date = start_date
+
+    number_of_months.times do
+      remaining -= price_per_month
+      schedule << {
+        payment_date: date,
+        remaining: remaining.positive? ? remaining.to_i : 0
+      }
+
+      # Move to the next month while ensuring the end of month is handled correctly
+      date = (date + 1.month).end_of_month if date.day == date.end_of_month.day
+      date = date + 1.month unless date.day == date.end_of_month.day
+    end
+
+    schedule
+  end
+
 
   private
 

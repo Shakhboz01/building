@@ -22,20 +22,20 @@ default: &default
 
 
 development:
-  # <<: *default
-  # database: building_development
-  # username: postgres
-  # password: 998915309764
-
-  adapter:  postgresql
-  encoding: unicode
-  database: railway
-  host: postgres.railway.internal
+  <<: *default
+  database: building_development
   username: postgres
-  port: 56155
-  password: IQeMfrkYhWPRDMORQFsyWhgtwqOMaDjR
-  url: postgresql://postgres:IQeMfrkYhWPRDMORQFsyWhgtwqOMaDjR@junction.proxy.rlwy.net:56155/railway
-  pool: 100
+  password: 998915309764
+
+  # adapter:  postgresql
+  # encoding: unicode
+  # database: railway
+  # host: postgres.railway.internal
+  # username: postgres
+  # port: 56155
+  # password: IQeMfrkYhWPRDMORQFsyWhgtwqOMaDjR
+  # url: postgresql://postgres:IQeMfrkYhWPRDMORQFsyWhgtwqOMaDjR@junction.proxy.rlwy.net:56155/railway
+  # pool: 100
 
 
 test:
