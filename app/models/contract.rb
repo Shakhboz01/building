@@ -10,6 +10,7 @@ class Contract < ApplicationRecord
   validates_presence_of :start_date
   validates_presence_of :fullname
   validates_presence_of :passport_number
+  validates_presence_of :phone_number
   validates_presence_of :passport_date
   before_save :set_prices
   validate :can_create_contract, on: :create
