@@ -99,9 +99,14 @@
   </ul>
 </div>
 
-<% if contract.top_ups.exists? %>
-  <div class='card mt-3 mb-4'>
-    <h4>История оплат (<%= num_to_uzs contract.total_price %> - <%= num_to_uzs contract.top_ups.sum(:amount) %> = <%= num_to_uzs(contract.total_price - contract.top_ups.sum(:amount)) %>)</h4>
-    <%= render 'top_ups/top_ups', top_ups: contract.top_ups.includes(:user) %>
+<div class='row'>
+  <div class='col-sm-6'>
+    <% if contract.top_ups.exists? %>
+      <div class='card mt-3 mb-4'>
+        <h4>История оплат (<%= num_to_uzs contract.total_price %> - <%= num_to_uzs contract.top_ups.sum(:amount) %> = <%= num_to_uzs(@remaining_amount_to_pay) %>)</h4>
+        <%= render 'top_ups/top_ups', top_ups: contract.top_ups.includes(:user) %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
+

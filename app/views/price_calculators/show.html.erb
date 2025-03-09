@@ -74,8 +74,8 @@
   </div>
 
   <div class="content">
-    <% if @price_calculator.special_apartment_number.present? %>
-      <%= image_tag @price_calculator.special_apartment_number&.asset_image_name %>
+    <% if @price_calculator.specific_apartment_number.present? %>
+      <%= image_tag @price_calculator.specific_apartment_number&.asset_image_name %>
     <% else %>
       <%= image_tag @price_calculator.apartment_number&.asset_image_name %>
     <% end %>
