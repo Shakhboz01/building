@@ -368,8 +368,8 @@
                     <tr>
                         <td><%= index + 1 %></td>
                         <td><%= schedule[:payment_date] %></td>
-                        <td><%= num_to_uzs @contract.price_per_month %></td>
-                        <td><%= num_to_uzs schedule[:remaining] %></td>
+                        <td><%= num_to_uzs @contract.price_per_month.to_i %></td>
+                        <td><%= num_to_uzs schedule[:remaining].to_i %></td>
                     </tr>
                 <% end %>
             </tbody>
