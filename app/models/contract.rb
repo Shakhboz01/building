@@ -33,7 +33,7 @@ class Contract < ApplicationRecord
   end
 
   def deadline
-    generate_payment_schedule.last[:payment_date]
+    generate_payment_schedule.last&[:payment_date]
   end
 
   def generate_payment_schedule

@@ -38,7 +38,7 @@ class ApartmentNumbersController < ApplicationController
   def update
     respond_to do |format|
       if @apartment_number.update(apartment_number_params)
-        format.html { redirect_to @apartment_number, notice: "Apartment number was successfully updated." }
+        format.html { redirect_to block_path(@apartment_number.block), notice: "Apartment number was successfully updated." }
         format.json { render :show, status: :ok, location: @apartment_number }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +65,6 @@ class ApartmentNumbersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def apartment_number_params
-      params.expect(apartment_number: [ :block_id, :number, :number_of_rooms, :square ])
+      params.expect(apartment_number: [ :block_id, :number, :number_of_rooms, :square, :asset_image_name ])
     end
 end

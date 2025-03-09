@@ -1,28 +1,48 @@
 <div class='container mb-3'>
-  <div class='card'>
-    <h4 class='p-2'>Информация о квартире</h4>
-    <ul class="list-group mb-3">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Блок
-        <span class="badge badge-primary badge-pill"><%= @apartment.block.name %></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Этаж
-        <span class="badge badge-primary badge-pill"><%= @apartment.floor.number %></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Номер квартиры
-        <span class="badge badge-primary badge-pill"><%= @apartment.apartment_number.number %></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Количество комнат
-        <span class="badge badge-primary badge-pill"><%= @apartment.apartment_number.number_of_rooms %></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Плошадь
-        <span class="badge badge-primary badge-pill"><%= @apartment.apartment_number.square %> кв.</span>
-      </li>
-    </ul>
+  <div class='row'>
+    <div class='col-sm-12 col-md-6'>
+      <div class='card'>
+        <h4 class='p-2'>Информация о квартире</h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Блок
+            <span class="badge badge-primary badge-pill"><%= @apartment.block.name %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Этаж
+            <span class="badge badge-primary badge-pill"><%= @apartment.floor.number %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Номер квартиры
+            <span class="badge badge-primary badge-pill"><%= @apartment.apartment_number.number %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Количество комнат
+            <span class="badge badge-primary badge-pill"><%= @apartment.apartment_number.number_of_rooms %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Плошадь
+            <span class="badge badge-primary badge-pill"><%= @apartment.apartment_number.square %> кв.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class='col-sm-12 col-md-6'>
+      <% if @apartment.apartment_number&.asset_image_name %>
+        <% if FileTest.exist?("#{Rails.root}/assets/images/#{@apartment.apartment_number.asset_image_name}") %>
+          <div style='height: 85vh;'>
+            <%= image_tag @apartment.apartment_number.asset_image_name, style: 'max-height: 100%; width: auto' %>
+          </div>
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+      <% end %>
+      <% if @apartment.specific_epartment_number.present? %>
+        <%= link_to 'Изменить/Добавить изображение плана квартиры', edit_specific_epartment_number_path(@apartment.specific_epartment_number) %>
+      <% else %>
+        <%= link_to 'Изменить/Добавить изображение плана квартиры', edit_apartment_number_path(@apartment.apartment_number) %>
+      <% end %>
+    </div>
   </div>
   <div class='mt-3'>
     <% if @apartment.is_full? %>
@@ -35,4 +55,3 @@
     <% end %>
   </div>
 </div>
-

@@ -27,8 +27,8 @@
 
     .content img {
       max-width: 90%; /* Adjusted to fit side by side */
-      height: 290px; /* Maintain aspect ratio */
-      margin: auto 5%;
+      height: 295px; /* Maintain aspect ratio */
+      margin: auto;
       border: 1px solid #ddd;
       border-radius: 5px;
     }
@@ -74,7 +74,11 @@
   </div>
 
   <div class="content">
-
+    <% if @price_calculator.special_apartment_number.present? %>
+      <%= image_tag @price_calculator.special_apartment_number&.asset_image_name %>
+    <% else %>
+      <%= image_tag @price_calculator.apartment_number&.asset_image_name %>
+    <% end %>
   </div>
 
   <div class="horizontal-layout">
