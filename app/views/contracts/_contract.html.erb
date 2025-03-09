@@ -89,12 +89,12 @@
     <% end %>
     <div>
       <%= link_to 'Изменить', edit_contract_path(contract), class: 'btn btn-warning m-3' %>
-      <% unless contract.pending?  %>
+      <% unless contract.pending_status?  %>
         <%= link_to 'Печатать договор', print_contract_path(contract), class: 'btn btn-secondary m-3' %>
         <%= link_to 'Пополнить', new_top_up_path(contract_id: contract.id), class: 'btn btn-success m-3' %>
         <%= link_to 'Печатать оплаты', print_top_ups_contract_path(contract, format: :pdf), class: 'btn btn-secondary m-3' %>
       <% end %>
-      <% if contract.pending_status %>
+      <% if contract.pending_status? %>
         <%= button_to 'Удалить', contract, class: 'btn btn-danger m-3', method: :delete %>
       <% end %>
     </div>

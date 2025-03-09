@@ -19,9 +19,6 @@
                  input_html: { class: "form-control shadow" },
                  prompt: "Выберите статус" %>
       </div>
-      <div class="mb-3 d-flex justify-content-between">
-        <%= form.input :payment_day, label: "число ежемесячной оплаты", input_html: { class: "form-control shadow" } %>
-      </div>
     <% elsif !contract.persisted? || current_user.admin?  %>
       <div class="mb-3">
         <%= form.input :fullname, label: "Полное имя", input_html: { class: "form-control shadow" } %>
