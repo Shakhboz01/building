@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class='col-sm-12 col-md-6'>
-      <% if Rails.application.assets.find_asset(@apartment.apartment_number.asset_image_name) %>
+      <% if @apartment.apartment_number.asset_image_name.present? && Rails.application.assets.find_asset(@apartment.apartment_number.asset_image_name) %>
         <div style='height: 85vh;'>
           <%= image_tag @apartment.apartment_number.asset_image_name, style: 'max-height: 100%; width: auto' %>
         </div>
