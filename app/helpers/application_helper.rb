@@ -1,6 +1,6 @@
 module ApplicationHelper
   def num_to_uzs(num)
-    number_to_currency(num, unit: '')
+    number_to_currency(num, unit: '', precision: 0)
   end
 
   def apartment_title(apartment)
