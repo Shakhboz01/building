@@ -24,6 +24,10 @@ class Contract < ApplicationRecord
     (total_price - first_payment_in_cash) / number_of_months
   end
 
+  def remaining_amount_to_pay
+    (total_price - first_payment_in_cash).to_i
+  end
+
   def last_top_up
     top_ups.order(:created_at).last
   end

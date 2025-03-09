@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+# * Дата начало ежемесячной оплаты, change format year, month, day
+# Hide contract number from _form,

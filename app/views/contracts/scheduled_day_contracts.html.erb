@@ -26,7 +26,7 @@
             <td><%= contract.fullname %></td>
             <td><%= contract.passport_number %>  <%= contract.phone_number %></td>
             <td><%= link_to contract.apartment_number.name, apartment_path(contract.apartment) %></td>
-            <td><%= contract.contract_number %></td>
+            <td><%= contract.id %></td>
             <td class="badge-<%= contract.status %>">
                 <%= contract_status(contract.status) %>
               </td>

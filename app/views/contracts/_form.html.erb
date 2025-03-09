@@ -24,9 +24,6 @@
       </div>
     <% elsif !contract.persisted? || current_user.admin?  %>
       <div class="mb-3">
-        <%= form.input :contract_number, label: "Номер договора", input_html: { class: "form-control shadow" } %>
-      </div>
-      <div class="mb-3">
         <%= form.input :fullname, label: "Полное имя", input_html: { class: "form-control shadow" } %>
       </div>
 
@@ -51,14 +48,14 @@
       <div class="mb-3">
         <%= form.input :extra_phone_number, label: "Номер телефона 2", input_html: { class: "form-control shadow" } %>
       </div>
-
+      <div class="mb-3">
+        <%= form.input :price_per_square, label: "Цена за квадратный метр", input_html: { class: "form-control shadow" } %>
+      </div>
       <div class="mb-3 d-flex justify-content-between">
         <%= form.input :first_payment_in_cash, label: "Первоначальный взнос (наличные)", input_html: { class: "form-control shadow" } %>
         <%= form.input :first_payment_in_percent, label: "Первоначальный взнос (%)", input_html: { class: "form-control shadow" } %>
       </div>
-      <div class="mb-3">
-        <%= form.input :price_per_square, label: "Цена за квадратный метр", input_html: { class: "form-control shadow" } %>
-      </div>
+
 
       <div class="mb-3">
         <%= form.input :number_of_months, label: "Количество месяцев", input_html: { class: "form-control shadow" } %>
