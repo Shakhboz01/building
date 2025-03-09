@@ -49,7 +49,7 @@ class GenerateTopUpsReceipts < ActiveInteraction::Base
         ['Номер квартиры:', contract.apartment.apartment_number.number],
       ],
       company: {
-        name: "ZARAFSHAN AVENUE",
+        name: "ZARAFSHON AVENUE",
         address: "Ибн Сино 4А",
         email: "+99897 923 00 03 / +99897 923 00 03"
         # logo: File.expand_path("./examples/images/logo.png")

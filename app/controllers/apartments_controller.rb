@@ -8,6 +8,8 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/1 or /apartments/1.json
   def show
+    @contract = @apartment.contract
+    @payment_schedule = @contract&.generate_payment_schedule
   end
 
   # GET /apartments/new

@@ -33,7 +33,7 @@ class Contract < ApplicationRecord
   end
 
   def deadline
-    generate_payment_schedule.last&[:payment_date]
+    generate_payment_schedule.last.dig(:payment_date)
   end
 
   def generate_payment_schedule
@@ -42,12 +42,15 @@ class Contract < ApplicationRecord
     schedule = []
     remaining = total_price - first_payment_in_cash
     date = start_date
-
+    top_ups_excluding_first_payment = top_ups.sum(:amount) - first_payment_in_cash
+    number_of_months_client_paid = (top_ups_excluding_first_payment / (price_per_month.zero? ? 1 : price_per_month).to_f).floor
     number_of_months.times do
       remaining -= price_per_month
+      number_of_months_client_paid -= 1
       schedule << {
         payment_date: date,
-        remaining: remaining.positive? ? remaining.to_i : 0
+        remaining: remaining.positive? ? remaining.to_i : 0,
+        paid: !number_of_months_client_paid.negative?
       }
 
       # Move to the next month while ensuring the end of month is handled correctly

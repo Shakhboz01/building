@@ -103,8 +103,35 @@
   <div class='col-sm-6'>
     <% if contract.top_ups.exists? %>
       <div class='card mt-3 mb-4'>
-        <h4>История оплат (<%= num_to_uzs contract.total_price %> - <%= num_to_uzs contract.top_ups.sum(:amount) %> = <%= num_to_uzs(@remaining_amount_to_pay) %>)</h4>
+        <h4>История оплат (<%= num_to_uzs contract.total_price %> - <%= num_to_uzs contract.top_ups.sum(:amount) %> = <%= num_to_uzs(contract.total_price - contract.top_ups.sum(:amount)) %>)</h4>
         <%= render 'top_ups/top_ups', top_ups: contract.top_ups.includes(:user) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='col-sm-6'>
+    <% unless @payment_schedule.empty? %>
+      <br/>
+      <div class='new-page m-3'>
+        <h3 class='text-center'>Расписания ежемесячных оплат</h3>
+        <table class='table table-sm table-striped table-bordered'>
+          <thead>
+            <th>№</th>
+            <th>Дата</th>
+            <th>Сумма платежа</th>
+            <th>Остаток</th>
+          </thead>
+          <tbody>
+            <% @payment_schedule.each_with_index do |schedule, index| %>
+              <tr class="<%= schedule[:paid] ? 'table-success' : '' %>">
+                <td><%= index + 1 %></td>
+                <td><%= schedule[:payment_date] %></td>
+                <td><%= num_to_uzs @contract.price_per_month %></td>
+                <td><%= num_to_uzs schedule[:remaining] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     <% end %>
   </div>

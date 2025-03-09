@@ -9,12 +9,7 @@ class ContractsController < ApplicationController
   # GET /contracts/1 or /contracts/1.json
   def show
     @remaining_amount_to_pay = @contract.total_price - @contract.top_ups.sum(:amount)
-    top_ups_excluding_first_payment = @contract.top_ups.sum(:amount) - @contract.first_payment_in_cash
-    number_of_months_client_paid = (top_ups_excluding_first_payment / (@contract.price_per_month.zero? ? 1 : @contract.price_per_month).to_f).floor
-    @payment_schedule =
-      @contract.generate_payment_schedule.map do |payment|
-        payment.merge({paid: number_of_months_client_paid.positive?})
-      end
+    @payment_schedule = @contract.generate_payment_schedule
   end
 
   # GET /contracts/new
