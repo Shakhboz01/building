@@ -28,14 +28,12 @@
       </div>
     </div>
     <div class='col-sm-12 col-md-6'>
-      <% if @apartment.apartment_number&.asset_image_name %>
-        <% if FileTest.exist?("#{Rails.root}/assets/images/#{@apartment.apartment_number.asset_image_name}") %>
-          <div style='height: 85vh;'>
-            <%= image_tag @apartment.apartment_number.asset_image_name, style: 'max-height: 100%; width: auto' %>
-          </div>
-        <% else %>
-          <p>No image available</p>
-        <% end %>
+      <% if FileTest.exist?("#{Rails.root}/assets/images/#{@apartment.apartment_number.asset_image_name}") %>
+        <div style='height: 85vh;'>
+          <%= image_tag @apartment.apartment_number.asset_image_name, style: 'max-height: 100%; width: auto' %>
+        </div>
+      <% else %>
+        <p>No image available</p>
       <% end %>
       <% if @apartment.specific_epartment_number.present? %>
         <%= link_to 'Изменить/Добавить изображение плана квартиры', edit_specific_epartment_number_path(@apartment.specific_epartment_number) %>
