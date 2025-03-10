@@ -2,8 +2,11 @@
     body {
         background: none
     }
+    th, td {
+        font-size: 9px;
+    }
 </style>
-<div style='font-size: 15.5px'>
+<div style='font-size: 10.5px'>
   <p align="center">
       <strong>ДОГОВОР №  <%= @contract.id %></strong>
   </p>
@@ -16,7 +19,7 @@
     <div class=''><strong>Город  Самарканд</strong></div>
     <div class=''>__________________</div>
   </div>
-  <br/>
+
   <p>
       ООО «JAXONGIR BAXT PLYUS», действующего на основании  Устава «Застройщик», в
       лице директора Раджабова Ш.Ф., паспорт АВ 4494909 выдан  ГУВД г. Самарканда
@@ -71,7 +74,7 @@
       1.6. Сумма оплаты «Покупателем» согласно пункта 1.4. настоящего договора
       составляет:
   </p>
-  <table class='table table-bordered'>
+  <table class='table table-sm table-bordered'>
       <thead>
         <th>Этаж</th>
         <th>Количество комнат</th>
@@ -326,7 +329,7 @@
       </table>
     </div>
     <div class='col-sm-6'>
-      <table class='table table-sm table-bordered'>
+      <table class='table table-sm table-bordered table-sm'>
         <thead>
           <tr><td><strong>«Инвестор/Дольщик»</strong></td></tr>
           <tr><td>Ф.И.О. <strong><%= @contract.fullname %></strong></td></tr>
@@ -344,8 +347,6 @@
       <p>MП</p>
       <br/>
       <br/>
-      <br/>
-      <br/>
       <div style='display:flex; flex-direction:column; align-items:center;' class='d-flex flex-direction-column align-items-center'>
         <p>__________________________<br>(место для подписи)</p>
       </div>
@@ -354,14 +355,18 @@
   <% unless @payment_schedule.empty? %>
     <br/>
 
-    <div class='new-page m-3'>
-        <h3 class='text-center'>Расписания ежемесячных оплат</h3>
-        <table class='table table-sm table-striped table-bordered'>
+    <div class='new-page d-flex flex-column'>
+        <table class='center table-bordered'>
             <thead>
-                <th>№</th>
-                <th>Дата</th>
-                <th>Сумма платежа</th>
-                <th>Остаток</th>
+                <tr>
+                    <th class='text-center' colspan=4><strong>Расписания ежемесячных оплат</strong></th>
+                </tr>
+                <tr>
+                    <th>№</th>
+                    <th>Дата</th>
+                    <th>Сумма платежа</th>
+                    <th>Остаток</th>
+                </tr>
             </thead>
             <tbody>
                 <% @payment_schedule.each_with_index do |schedule, index| %>
